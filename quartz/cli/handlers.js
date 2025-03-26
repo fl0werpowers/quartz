@@ -5,7 +5,7 @@ import chalk from "chalk"
 import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
 import { intro, outro, select, text } from "@clack/prompts"
-import { rimraf } from "rimraf"
+import { rm } from "fs/promises"
 import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
 import { execSync, spawnSync } from "child_process"
@@ -119,7 +119,7 @@ export async function handleCreate(argv) {
     if (contentStat.isSymbolicLink()) {
       await fs.promises.unlink(contentFolder)
     } else {
-      await rimraf(contentFolder)
+      await rm(path, { recursive: true })
     }
   }
 
