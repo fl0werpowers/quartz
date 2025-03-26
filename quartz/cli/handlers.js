@@ -2,6 +2,7 @@ import { promises } from "fs"
 import path from "path"
 import esbuild from "esbuild"
 import chalk from "chalk"
+import { styleText } from "util"
 import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
 import { intro, outro, select, text } from "@clack/prompts"
@@ -61,12 +62,16 @@ export async function handleCreate(argv) {
       // Error handling
       if (!sourceDirectory) {
         outro(
-          chalk.red(
-            `Setup strategies (arg '${chalk.yellow(
+          styleText(
+            "red",
+            `Setup strategies (arg '${styleText(
+              "yellow",
               `-${CreateArgv.strategy.alias[0]}`,
-            )}') other than '${chalk.yellow(
+            )}') other than '${styleText(
+              "yellow",
               "new",
-            )}' require content folder argument ('${chalk.yellow(
+            )}' require content folder argument ('${styleText(
+              "yellow",
               `-${CreateArgv.source.alias[0]}`,
             )}') to be set`,
           ),
